@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="setUp"
     tools:context=".fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -49,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="280dp"
             android:layout_marginTop="40dp"
-            android:onClick="setUp()"
+            android:onClick="setUp"
             android:text="Log out" />
 
         <TextView
