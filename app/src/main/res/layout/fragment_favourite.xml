@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FavouriteFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgPlant"
+            android:layout_width="341dp"
+            android:layout_height="458dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="15dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/splash_background" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="490dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#323232"
+            android:text="Status:"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="530dp"
+            android:layout_marginBottom="128dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#323232"
+            android:text="Humidity:"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="490dp"
+            android:background="#8BC34A"
+            android:fontFamily="sans-serif-black"
+            android:text=" OK"
+            android:textColor="#FFFBFB"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="530dp"
+            android:background="#8BC34A"
+            android:fontFamily="sans-serif-black"
+            android:text="75%"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="425dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#323232"
+            android:text="Centaurea Real"
+            android:textSize="40sp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

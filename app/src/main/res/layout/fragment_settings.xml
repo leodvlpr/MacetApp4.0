@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SettingsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgCam"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="205dp"
+            android:contentDescription="TODO"
+            android:foreground="@android:drawable/ic_menu_camera" />
+
+        <ImageView
+            android:id="@+id/imgFolder"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="205dp"
+            android:contentDescription="TODO"
+            android:foreground="@android:drawable/ic_menu_gallery" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="110dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#323232"
+            android:text="Name:"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginBottom="128dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#323232"
+            android:text="Select picture:"
+            android:textSize="26sp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="105dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="530dp"
+            android:text="Save" />
+
+    </RelativeLayout>
+
+</FrameLayout>
