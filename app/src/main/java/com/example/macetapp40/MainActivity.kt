@@ -3,12 +3,13 @@ package com.example.macetapp40
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.macetapp40.fragments.FavouriteFragment
 import com.example.macetapp40.fragments.HomeFragment
 import com.example.macetapp40.fragments.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         //SetUp
         val bundle : Bundle? = intent.extras
         val email = bundle?.getString("email")
-        setUp(email ?: "")
+        homeFragment.arguments = bundle
+        setUp(email)
 
 
         //Save data
@@ -45,7 +47,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setUp(email: String) {
+    private fun setUp(email: String?) {
+
 
     }
 
