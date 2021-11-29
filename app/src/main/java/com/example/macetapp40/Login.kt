@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.example.macetapp40.fragments.HomeFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -13,6 +14,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class Login : AppCompatActivity() {
@@ -40,6 +42,7 @@ class Login : AppCompatActivity() {
         if(email != null) {
             logInLayout.visibility = View.INVISIBLE
             showHome(email)
+
         }
     }
 

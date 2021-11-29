@@ -3,17 +3,17 @@ package com.example.macetapp40
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.macetapp40.fragments.FavouriteFragment
 import com.example.macetapp40.fragments.HomeFragment
 import com.example.macetapp40.fragments.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : AppCompatActivity() {
 
+    private val shareDataViewModelViewModel : ShareDataViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         val bundle : Bundle? = intent.extras
         val email = bundle?.getString("email")
         homeFragment.arguments = bundle
-        setUp(email)
 
 
         //Save data
@@ -47,15 +46,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setUp(email: String?) {
-
-
-    }
 
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fl_wrapper, fragment)
             commit()
         }
+
 
 }

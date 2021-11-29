@@ -12,12 +12,11 @@
 
         <ImageView
             android:id="@+id/imgPlant"
-            android:layout_width="341dp"
-            android:layout_height="458dp"
-            android:layout_marginStart="35dp"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_marginStart="56dp"
             android:layout_marginTop="15dp"
-            android:contentDescription="TODO"
-            android:src="@drawable/splash_background" />
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/textView"
