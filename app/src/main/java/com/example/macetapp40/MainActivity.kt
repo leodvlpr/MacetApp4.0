@@ -3,6 +3,7 @@ package com.example.macetapp40
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.macetapp40.fragments.FavouriteFragment
 import com.example.macetapp40.fragments.HomeFragment

@@ -35,12 +35,14 @@ class FavouriteFragment : Fragment() {
         shareDataViewModelViewModel.getViewModelState.observe(viewLifecycleOwner) {
             state ->
             when (state) {
-                is ViewModelState.Loading -> {}
+                is ViewModelState.Loading -> {
+
+                }
                 is ViewModelState.Success -> {
                     if (state.uriPic != null && state.bitmapPic == null) {
                         imgPlant.setImageURI(state.uriPic)
                     }
-                    if (state.uriPic == null && state.bitmapPic != null) {
+                    if (state.bitmapPic != null && state.uriPic == null) {
                         imgPlant.setImageBitmap(state.bitmapPic)
                     }
                 }

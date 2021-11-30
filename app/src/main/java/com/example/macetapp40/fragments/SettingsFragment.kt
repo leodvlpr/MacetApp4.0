@@ -15,15 +15,16 @@ import android.net.Uri
 import com.example.macetapp40.ShareDataViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-
 class SettingsFragment : Fragment() {
     private val PICK_IMAGE = 100
     private val REQUEST_IMAGE_CAPTURE = 1
     private var imageUri: Uri? = null
+    private var imageBitmap: Bitmap? = null
     private val shareDataViewModelViewModel : ShareDataViewModel by sharedViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         imgFolder.setOnClickListener {
             openGallery()
         }
@@ -34,6 +35,7 @@ class SettingsFragment : Fragment() {
         saveBtn.setOnClickListener {
 
         }
+
     }
 
     private fun openGallery() {
@@ -48,19 +50,17 @@ class SettingsFragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            imageUri = data?.data
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
+            imageUri = data?.data as Uri
             shareDataViewModelViewModel.setUriPhoto(imageUri)
             imgSelected.setImageURI(imageUri)
         }
-
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
+            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            imageBitmap = data?.extras?.get("data") as Bitmap
             shareDataViewModelViewModel.setBitmapPhoto(imageBitmap)
             imgSelected.setImageBitmap(imageBitmap)
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

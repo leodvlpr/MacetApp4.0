@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -34,7 +35,7 @@ class ShareDataViewModel( private val _viewModelState: MutableLiveData<ViewModel
 
     //Bitmap//
 
-    fun setBitmapPhoto (bitmap: Bitmap) {
+    fun setBitmapPhoto (bitmap: Bitmap?) {
         bitmapPic = bitmap
     }
 
