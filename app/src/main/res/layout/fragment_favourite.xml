@@ -42,38 +42,41 @@
             android:textSize="26sp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_statusFav"
             android:layout_width="50sp"
             android:layout_height="wrap_content"
             android:layout_marginStart="250dp"
             android:layout_marginTop="490dp"
             android:background="#8BC34A"
             android:fontFamily="sans-serif-black"
-            android:text=" OK"
+            android:text=""
+            android:textAlignment="center"
             android:textColor="#FFFBFB"
             android:textSize="26sp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_humidityFav"
             android:layout_width="50sp"
             android:layout_height="wrap_content"
             android:layout_marginStart="250dp"
             android:layout_marginTop="530dp"
             android:background="#8BC34A"
             android:fontFamily="sans-serif-black"
-            android:text="75%"
+            android:textAlignment="center"
+            android:text=""
             android:textColor="#FFFFFF"
             android:textSize="26sp" />
 
         <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_plantNameFav"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp"
             android:layout_marginTop="425dp"
             android:fontFamily="sans-serif-black"
+            android:text=""
+            android:textAlignment="center"
             android:textColor="#323232"
-            android:text="Centaurea Real"
             android:textSize="40sp" />
 
     </RelativeLayout>

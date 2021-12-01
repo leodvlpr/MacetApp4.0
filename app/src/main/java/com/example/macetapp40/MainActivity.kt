@@ -3,7 +3,6 @@ package com.example.macetapp40
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.macetapp40.fragments.FavouriteFragment
 import com.example.macetapp40.fragments.HomeFragment
@@ -15,6 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
 
     private val shareDataViewModelViewModel : ShareDataViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,13 +37,20 @@ class MainActivity : AppCompatActivity() {
         //SetUp
         val bundle : Bundle? = intent.extras
         val email = bundle?.getString("email")
+        val plantName = bundle?.getString("plantName")
+        val plantSensor = bundle?.getString("plantSensor")
+        val userId = bundle?.getString("userId")
         homeFragment.arguments = bundle
-
+        favouriteFragment.arguments = bundle
 
         //Save data
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
         prefs.putString("email", email)
+        prefs.putString("plantName", plantName)
+        prefs.putString("plantSensor", plantSensor)
+        prefs.putString("userId", userId)
         prefs.apply()
+
 
     }
 

@@ -49,8 +49,9 @@ class SettingsFragment : Fragment() {
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+        {
+            if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
             imageUri = data?.data as Uri
             shareDataViewModelViewModel.setUriPhoto(imageUri)
             imgSelected.setImageURI(imageUri)
