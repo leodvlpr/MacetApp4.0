@@ -10,6 +10,4 @@ class MacetappRepositoryImpl(private val macetappAPI: MacetappAPI) : MacetappRep
             executeRetrofitRequest { macetappAPI.getPlantByUserId(userId) }
         }
     }
-
-
 }

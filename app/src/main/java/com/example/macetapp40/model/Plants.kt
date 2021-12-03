@@ -4,28 +4,30 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Plant(
+data class Plant (
+
     @SerialName("Description")
-    val description: String,
+    val description: String = "",
 
     @SerialName("Name")
-    val name: String,
+    val name: String = "",
 
     @SerialName("Humidity")
-    val humidity: Int,
+    val humidity: Int = 0,
 
     @SerialName("Watering")
-    val watering: String,
+    val watering: String = "",
 
     @SerialName("PlantImage")
-    val image: String,
+    val image: String = "",
 
     @SerialName("Date")
-    val date: String,
+    val date: String = "",
 
     @SerialName("PlantCode")
-    val code: String,
+    val code: String = "",
 
     @SerialName("PlantTypeId")
-    val typeId: Int
+    val typeId: Int = 0
+
 )

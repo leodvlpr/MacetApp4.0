@@ -6,19 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import com.example.macetapp40.MainActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 import android.content.Intent
-import android.widget.ImageView
+import android.graphics.Bitmap
 import android.widget.Toast
 import com.example.macetapp40.Login
 import com.example.macetapp40.ShareDataViewModel
 import com.example.macetapp40.ViewModelState
-import kotlinx.android.synthetic.main.fragment_favourite.*
 import kotlinx.android.synthetic.main.fragment_home.imgPlant
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import android.graphics.BitmapFactory
+import android.util.Base64
+import com.example.macetapp40.R
+import kotlinx.android.synthetic.main.fragment_favourite.*
+import java.io.ByteArrayOutputStream
+
 
 private const val ARG_PARAM1 = "email"
 private const val ARG_PARAM2 = "plantName"
@@ -56,6 +59,7 @@ class HomeFragment() : Fragment() {
             prefs?.apply()
             val intent = Intent(activity, Login::class.java)
             requireActivity().startActivity(intent)
+            activity?.finishAffinity()
         }
         observerResponse()
         shareDataViewModelViewModel.getUriPhoto()
@@ -82,12 +86,21 @@ class HomeFragment() : Fragment() {
                     }
                     is ViewModelState.PlantSuccess -> {
                         tv_plantName.text = state.plant.name
-                        tv_status.text = state.plant.humidity.toString()
+                        if (state.plant.watering == "si") {
+                            tv_status.text = "OK"
+                        } else {
+                            tv_status.text = "--"
+                        }
+                    }
+                    else -> {
+                        Toast.makeText(activity, "Comunicate con soporte", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(activity, Login::class.java)
+                        requireActivity().startActivity(intent)
+                        activity?.finishAffinity()
                     }
                 }
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

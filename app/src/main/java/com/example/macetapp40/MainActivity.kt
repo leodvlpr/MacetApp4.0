@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.ic_settings -> makeCurrentFragment(settingsFragment)
             }
             true
+
         }
 
         //SetUp
@@ -51,7 +52,11 @@ class MainActivity : AppCompatActivity() {
         prefs.putString("userId", userId)
         prefs.apply()
 
+    }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        this.finishAffinity()
     }
 
 

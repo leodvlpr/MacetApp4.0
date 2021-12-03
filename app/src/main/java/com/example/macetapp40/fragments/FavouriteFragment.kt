@@ -11,8 +11,8 @@ import com.example.macetapp40.ShareDataViewModel
 import com.example.macetapp40.ViewModelState
 import kotlinx.android.synthetic.main.fragment_favourite.*
 import kotlinx.android.synthetic.main.fragment_favourite.imgPlant
-import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
 
 private const val ARG_PARAM1 = "plantName"
 private const val ARG_PARAM2 = "plantStatus"
@@ -68,11 +68,15 @@ class FavouriteFragment : Fragment() {
                 }
                 is ViewModelState.PlantSuccess -> {
                     tv_plantNameFav.text = state.plant.name
-                    tv_humidityFav.text = state.plant.humidity.toString()
+                    if (state.plant.humidity == 0) {
+                        tv_humidityFav.text = "--"
+                    } else {
+                        tv_humidityFav.text = state.plant.humidity.toString()
+                    }
                     if (state.plant.watering == "si") {
                         tv_statusFav.text = "OK"
                     } else {
-                        tv_statusFav.text = "Alert!"
+                        tv_statusFav.text = "--"
                     }
                 }
             }
@@ -84,7 +88,7 @@ class FavouriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(com.example.macetapp40.R.layout.fragment_favourite, container, false)
+        return inflater.inflate(R.layout.fragment_favourite, container, false)
     }
 
 }

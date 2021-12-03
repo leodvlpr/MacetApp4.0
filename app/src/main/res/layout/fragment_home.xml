@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_home"
     android:layout_width="match_parent"
@@ -17,7 +18,8 @@
             android:layout_height="181dp"
             android:layout_marginStart="35dp"
             android:layout_marginTop="250dp"
-            android:contentDescription="TODO" />
+            android:contentDescription="TODO"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
 
         <TextView
             android:id="@+id/tv_status"
@@ -61,14 +63,6 @@
             android:fontFamily="sans-serif-medium"
             android:textColor="#323232"
             android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/imgTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="50dp"
-            android:contentDescription="TODO" />
 
 
     </RelativeLayout>

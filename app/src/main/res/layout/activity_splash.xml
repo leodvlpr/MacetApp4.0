@@ -37,7 +37,7 @@
         android:layout_width="284dp"
         android:layout_height="96dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="116dp"
         android:fontFamily="sans-serif-black"
         android:text="MacetApp"
         android:textColor="#4CAF50"
