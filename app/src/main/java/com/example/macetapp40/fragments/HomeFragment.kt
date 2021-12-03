@@ -90,6 +90,8 @@ class HomeFragment() : Fragment() {
                             tv_status.text = "OK"
                         } else {
                             tv_status.text = "--"
+                            tv_plantName.text = "No plant yet!"
+                            Toast.makeText(context, "No assigned plant yet! Please register your product in our website. www.macetapp.com", Toast.LENGTH_SHORT).show()
                         }
                     }
                     else -> {

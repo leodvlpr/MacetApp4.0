@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.example.macetapp40.R
 import com.example.macetapp40.ShareDataViewModel
 import com.example.macetapp40.ViewModelState
@@ -70,6 +71,8 @@ class FavouriteFragment : Fragment() {
                     tv_plantNameFav.text = state.plant.name
                     if (state.plant.humidity == 0) {
                         tv_humidityFav.text = "--"
+                        tv_plantNameFav.text = "No plant yet!"
+                        Toast.makeText(context, "No assigned plant yet! Please register your product in our website. www.macetapp.com", Toast.LENGTH_SHORT).show()
                     } else {
                         tv_humidityFav.text = state.plant.humidity.toString()
                     }
