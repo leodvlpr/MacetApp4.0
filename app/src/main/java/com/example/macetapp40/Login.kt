@@ -75,6 +75,7 @@ class Login : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{
                         if(it.isSuccessful) {
+                            val userGoogleId = account.id
                             val uiid = FirebaseAuth.getInstance().currentUser?.uid
                             if (uiid != null) {
                                 showHome(account.displayName ?: "",plantName, plantSensor, uiid)
