@@ -23,16 +23,6 @@ class ShareDataViewModel(
     private var uriPic: Uri? = null
     private var bitmapPic: Bitmap? = null
 
-    //Get user//
-    fun getUser(userGoogleId: String) {
-        viewModelScope.launch {
-            _viewModelState.value = when (val result = macetappRepository.getUser(userGoogleId)) {
-                MacetappResult.Loading -> ViewModelState.Loading
-                is MacetappResult.Error -> ViewModelState.Error
-                is MacetappResult.Success -> ViewModelState.UserSuccess(result.data)
-            }
-        }
-    }
 
     //Get plant//
     fun getPlantByUserId(userId: String) {

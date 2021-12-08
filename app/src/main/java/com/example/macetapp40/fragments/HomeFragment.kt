@@ -20,7 +20,9 @@ import android.graphics.BitmapFactory
 import android.util.Base64
 import com.example.macetapp40.R
 import kotlinx.android.synthetic.main.fragment_favourite.*
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 
 private const val ARG_PARAM1 = "email"
@@ -88,10 +90,19 @@ class HomeFragment() : Fragment() {
                         tv_plantName.text = state.plant.name
                         if (state.plant.watering == "si") {
                             tv_status.text = "OK"
+                            val encodeByte: ByteArray = Base64.decode(state.plant.image, Base64.DEFAULT)
+                            val inputStream: InputStream = ByteArrayInputStream(encodeByte)
+                            val bitmap = BitmapFactory.decodeStream(inputStream)
+                            imgPlant.setImageBitmap(bitmap)
+
                         } else {
                             tv_status.text = "--"
                             tv_plantName.text = "No plant yet!"
-                            Toast.makeText(context, "No assigned plant yet! Please register your product in our website. www.macetapp.com", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                    context ,
+                                    "No assigned plant yet! Please register your product in our website www.macetapp.com" ,
+                                    Toast.LENGTH_SHORT
+                                          ).show()
                         }
                     }
                     else -> {

@@ -1,7 +1,6 @@
 package com.example.macetapp40.repository
 
 import com.example.macetapp40.model.Plant
-import com.example.macetapp40.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -12,9 +11,8 @@ class MacetappRepositoryImpl(private val macetappAPI: MacetappAPI) : MacetappRep
         }
     }
 
-    override suspend fun getUser(userGoogleId: String): MacetappResult<User> {
-        return withContext(Dispatchers.IO) {
-            executeRetrofitRequest { macetappAPI.getUser(userGoogleId) }
-        }
+    override suspend fun getUser(userGoogleId: String) {
+        TODO("Not yet implemented")
     }
+
 }
