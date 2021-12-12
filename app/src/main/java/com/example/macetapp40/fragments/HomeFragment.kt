@@ -51,9 +51,9 @@ class HomeFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (view.findViewById(com.example.macetapp40.R.id.emailTextView) as TextView).text = email
-        (view.findViewById(com.example.macetapp40.R.id.tv_plantName) as TextView).text = plantName
-        (view.findViewById(com.example.macetapp40.R.id.tv_status) as TextView).text = plantSensor
+        (view.findViewById(R.id.emailTextView) as TextView).text = email
+        (view.findViewById(R.id.tv_plantName) as TextView).text = plantName
+        (view.findViewById(R.id.tv_status) as TextView).text = plantSensor
         logOutBtn.setOnClickListener {
             val prefs = activity?.getSharedPreferences(getString(com.example.macetapp40.R.string.prefs_file), Context.MODE_PRIVATE)
                 ?.edit()
@@ -65,7 +65,6 @@ class HomeFragment() : Fragment() {
         }
         observerResponse()
         shareDataViewModelViewModel.getUriPhoto()
-        shareDataViewModelViewModel.getBitmapPhoto()
         userId?.let { shareDataViewModelViewModel.getPlantByUserId(it) }
     }
 
@@ -81,28 +80,19 @@ class HomeFragment() : Fragment() {
                             imgPlant.setImageURI(state.uriPic)
                         }
                     }
-                    is ViewModelState.BitmapPicSuccess -> {
-                        if (state.bitmapPic != null) {
-                            imgPlant.setImageBitmap(state.bitmapPic)
-                        }
-                    }
                     is ViewModelState.PlantSuccess -> {
                         tv_plantName.text = state.plant.name
+                        val encodeByte: ByteArray = Base64.decode(state.plant.image, Base64.DEFAULT)
+                        val inputStream: InputStream = ByteArrayInputStream(encodeByte)
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        imgPlant.setImageBitmap(bitmap)
                         if (state.plant.watering == "si") {
                             tv_status.text = "OK"
-                            val encodeByte: ByteArray = Base64.decode(state.plant.image, Base64.DEFAULT)
-                            val inputStream: InputStream = ByteArrayInputStream(encodeByte)
-                            val bitmap = BitmapFactory.decodeStream(inputStream)
-                            imgPlant.setImageBitmap(bitmap)
-
+                        }
+                        if (state.plant.watering == null) {
+                            tv_status.text = "null"
                         } else {
                             tv_status.text = "--"
-                            tv_plantName.text = "No plant yet!"
-                            Toast.makeText(
-                                    context ,
-                                    "No assigned plant yet! Please register your product in our website www.macetapp.com" ,
-                                    Toast.LENGTH_SHORT
-                                          ).show()
                         }
                     }
                     else -> {

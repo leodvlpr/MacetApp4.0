@@ -12,32 +12,45 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imgCam"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="205dp"
-            android:contentDescription="TODO"
-            android:foreground="@android:drawable/ic_menu_camera" />
-
-        <ImageView
             android:id="@+id/imgFolder"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="205dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="280dp"
             android:contentDescription="TODO"
             android:foreground="@android:drawable/ic_menu_gallery" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_plantNameConf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="170dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Name:"
+            android:textColor="#323232"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/tv_plantType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="110dp"
             android:fontFamily="sans-serif-black"
+            android:text="Type:"
             android:textColor="#323232"
-            android:text="Name:"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/tv_plantCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="230dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Plant code:"
+            android:textColor="#323232"
             android:textSize="26sp" />
 
         <TextView
@@ -45,32 +58,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="300dp"
             android:layout_marginBottom="128dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="#323232"
             android:text="Select picture:"
+            android:textColor="#323232"
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/editTextName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="130dp"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="160dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="" />
 
-        <ImageView
-            android:id="@+id/imgSelected"
-            android:layout_width="200dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="265dp"
-            android:contentDescription="TODO"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+        <EditText
+            android:id="@+id/editTextPlantCode"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="220dp"
+            android:ems="10"
+            android:inputType="textVisiblePassword"
+            android:minHeight="48dp"
+            android:text="" />
 
         <Button
             android:id="@+id/saveBtn"
@@ -79,6 +94,13 @@
             android:layout_marginStart="280dp"
             android:layout_marginTop="530dp"
             android:text="Save" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="120dp" />
 
     </RelativeLayout>
 

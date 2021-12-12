@@ -15,10 +15,10 @@ fun provideRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {
         .baseUrl(baseUrl)
         .client(client)
         .addConverterFactory(
-            Json {
-                ignoreUnknownKeys = true
-            }.asConverterFactory("application/json".toMediaType())
-        )
+                Json {
+                    ignoreUnknownKeys = true
+                }.asConverterFactory("application/json".toMediaType())
+                            )
         .build()
 }
 
@@ -34,18 +34,18 @@ internal inline fun <T : Any> executeRetrofitRequest(request: () -> Response<T>)
     return try {
         val response = request.invoke()
         return if (response.isSuccessful && response.body() != null) {
-                    val body = response.body()
-                    if (body != null) {
-                        MacetappResult.Success(body)
-                    } else {
-                        MacetappResult.Error("Empty body found in this request")
-                    }
-                } else {
-                    val errorBody = response.errorBody()
-                    val errorText = errorBody?.string() ?: "Error body null"
-                    MacetappResult.Error(errorText)
-                }
-        } catch (exception: UnknownHostException) {
-            MacetappResult.Error(exception.toString())
+            val body = response.body()
+            if (body != null) {
+                MacetappResult.Success(body)
+            } else {
+                MacetappResult.Error("Empty body found in this request")
+            }
+        } else {
+            val errorBody = response.errorBody()
+            val errorText = errorBody?.string() ?: "Error body null"
+            MacetappResult.Error(errorText)
         }
+    } catch (exception: UnknownHostException) {
+        MacetappResult.Error(exception.toString())
+    }
 }

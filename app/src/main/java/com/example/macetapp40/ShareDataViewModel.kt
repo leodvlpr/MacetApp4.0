@@ -1,17 +1,18 @@
 package com.example.macetapp40
 
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.macetapp40.di.viewModelModule
+import com.example.macetapp40.model.Post
 import com.example.macetapp40.repository.MacetappRepository
 import com.example.macetapp40.repository.MacetappResult
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 
 class ShareDataViewModel(
     private val macetappRepository: MacetappRepository,
@@ -21,7 +22,6 @@ class ShareDataViewModel(
     val getViewModelState: LiveData<ViewModelState>
     get() = _viewModelState
     private var uriPic: Uri? = null
-    private var bitmapPic: Bitmap? = null
 
 
     //Get plant//
@@ -31,6 +31,39 @@ class ShareDataViewModel(
                 MacetappResult.Loading -> ViewModelState.Loading
                 is MacetappResult.Error -> ViewModelState.Error
                 is MacetappResult.Success -> ViewModelState.PlantSuccess(result.data)
+            }
+        }
+    }
+
+    //Get plant Id//
+    fun getPlantTypeId() {
+        viewModelScope.launch {
+            _viewModelState.value = when (val result = macetappRepository.getPlantTypeId()) {
+                MacetappResult.Loading -> ViewModelState.Loading
+                is MacetappResult.Error -> ViewModelState.Error
+                is MacetappResult.Success -> ViewModelState.PlantTypeSuccess(result.data)
+            }
+        }
+    }
+
+    //Add new plant//
+    fun setNewPlant(post: Post) {
+        viewModelScope.launch {
+            _viewModelState.value = when (val result = macetappRepository.setNewPlant(post)) {
+                MacetappResult.Loading -> ViewModelState.Loading
+                is MacetappResult.Error -> ViewModelState.Error
+                is MacetappResult.Success -> ViewModelState.PostSuccess(result.data)
+            }
+        }
+    }
+
+    //Modify plant
+    fun setModifyPlant(post: Post) {
+        viewModelScope.launch {
+            _viewModelState.value = when (val result = macetappRepository.setModifyPlant(post)) {
+                MacetappResult.Loading -> ViewModelState.Loading
+                is MacetappResult.Error -> ViewModelState.Error
+                is MacetappResult.Success -> ViewModelState.PostSuccess(result.data)
             }
         }
     }
@@ -50,22 +83,5 @@ class ShareDataViewModel(
     }
 
     private fun getUriPic() = flow <Uri>{ uriPic }
-
-
-    //Bitmap//
-    fun setBitmapPhoto (bitmap: Bitmap?) {
-        bitmapPic = bitmap
-    }
-
-    fun getBitmapPhoto () {
-        viewModelScope.launch {
-            getBitmapPic().onStart {
-                _viewModelState.value = ViewModelState.Loading
-            }
-            _viewModelState.value = ViewModelState.BitmapPicSuccess(bitmapPic)
-        }
-    }
-
-    private fun getBitmapPic() = flow <Bitmap>{ bitmapPic }
 
 }

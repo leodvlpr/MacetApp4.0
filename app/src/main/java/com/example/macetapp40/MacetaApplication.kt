@@ -14,10 +14,10 @@ class MacetaApplication : Application() {
         startKoin {
             androidContext(this@MacetaApplication)
             loadKoinModules(
-                listOf(
-                    viewModelModule
-                )
-            )
+                    listOf(
+                            viewModelModule
+                          )
+                           )
         }
     }
 }

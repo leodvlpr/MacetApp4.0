@@ -1,6 +1,8 @@
 package com.example.macetapp40.fragments
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +14,10 @@ import com.example.macetapp40.ShareDataViewModel
 import com.example.macetapp40.ViewModelState
 import kotlinx.android.synthetic.main.fragment_favourite.*
 import kotlinx.android.synthetic.main.fragment_favourite.imgPlant
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import java.io.ByteArrayInputStream
+import java.io.InputStream
 
 
 private const val ARG_PARAM1 = "plantName"
@@ -46,7 +51,6 @@ class FavouriteFragment : Fragment() {
         (view.findViewById(R.id.tv_humidityFav) as TextView).text = plantSensor
         observerResponse()
         shareDataViewModelViewModel.getUriPhoto()
-        shareDataViewModelViewModel.getBitmapPhoto()
         userId?.let { shareDataViewModelViewModel.getPlantByUserId(it) }
     }
 
@@ -62,13 +66,12 @@ class FavouriteFragment : Fragment() {
                         imgPlant.setImageURI(state.uriPic)
                     }
                 }
-                is ViewModelState.BitmapPicSuccess -> {
-                    if (state.bitmapPic != null) {
-                        imgPlant.setImageBitmap(state.bitmapPic)
-                    }
-                }
                 is ViewModelState.PlantSuccess -> {
                     tv_plantNameFav.text = state.plant.name
+                    val encodeByte: ByteArray = Base64.decode(state.plant.image, Base64.DEFAULT)
+                    val inputStream: InputStream = ByteArrayInputStream(encodeByte)
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+                    imgPlant.setImageBitmap(bitmap)
                     if (state.plant.humidity == 0) {
                         tv_humidityFav.text = "--"
                         tv_plantNameFav.text = "No plant yet!"
@@ -82,6 +85,7 @@ class FavouriteFragment : Fragment() {
                         tv_statusFav.text = "--"
                     }
                 }
+                else -> {}
             }
         }
     }

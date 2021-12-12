@@ -13,16 +13,16 @@ data class Plant (
     val name: String = "",
 
     @SerialName("Humidity")
-    val humidity: Int = 0,
+    val humidity: Int? = 0,
 
     @SerialName("Watering")
-    val watering: String = "",
+    val watering: String? = "",
 
     @SerialName("PlantImage")
     val image: String = "",
 
     @SerialName("Date")
-    val date: String = "",
+    val date: String? = "",
 
     @SerialName("PlantCode")
     val code: String = "",
