@@ -88,7 +88,9 @@ class FavouriteFragment : Fragment() {
                     if (state.plant.date == null || state.plant.date == "") {
                         tv_statusDate.text = "   --   "
                     } else {
-                        tv_statusDate.text = " " + state.plant.date + " "
+                        val stringDate = state.plant.date
+                        val splitDate = stringDate.split("T")
+                        tv_statusDate.text = " " + splitDate[0] + " "
                     }
 
                     if (state.plant.humidity == null || state.plant.humidity == 0) {
