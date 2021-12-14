@@ -25,26 +25,58 @@
             android:id="@+id/tv_status"
             android:layout_width="50sp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="265dp"
+            android:layout_marginStart="320dp"
             android:layout_marginTop="340dp"
             android:background="#8BC34A"
             android:fontFamily="sans-serif-black"
-            android:text=""
             android:textAlignment="center"
             android:textColor="#FFFBFB"
-            android:textSize="26sp" />
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_humidity"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="375dp"
+            android:background="#8BC34A"
+            android:fontFamily="sans-serif-black"
+            android:textAlignment="center"
+            android:textColor="#FFFBFB"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_plantName"
-            android:layout_width="165dp"
+            android:layout_width="184dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="208dp"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="290dp"
             android:fontFamily="sans-serif-black"
-            android:text=""
             android:textAlignment="center"
             android:textColor="#323232"
             android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="340dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Humidity:"
+            android:textColor="#323232"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="375dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Watering:"
+            android:textColor="#323232"
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/logOutBtn"

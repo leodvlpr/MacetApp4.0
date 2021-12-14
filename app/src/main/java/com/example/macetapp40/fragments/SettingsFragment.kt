@@ -10,13 +10,17 @@ import com.example.macetapp40.R
 import kotlinx.android.synthetic.main.fragment_settings.*
 import android.provider.MediaStore
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
+import android.util.Base64
 import android.widget.*
 import com.example.macetapp40.ShareDataViewModel
 import com.example.macetapp40.ViewModelState
 import com.example.macetapp40.model.Post
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_favourite.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import java.io.ByteArrayInputStream
 
 private const val ARG_PARAM1 = "plantName"
 private const val ARG_PARAM3 = "userId"
@@ -50,7 +54,7 @@ class SettingsFragment : Fragment() {
             if (editTextPlantCode.text != null) {
                 val plantCode = editTextPlantCode.text.toString()
                 val plantName = editTextName.text.toString()
-                val plantTypeId = 1
+                val plantTypeId = 2
                 val user = FirebaseAuth.getInstance().currentUser?.uid
                 val plantImg = imgFolder.toString()
                 val myPost = Post(plantCode, plantName, plantTypeId, user, plantImg)
@@ -58,7 +62,7 @@ class SettingsFragment : Fragment() {
             } else {
                 val plantCode = editTextPlantCode.text.toString()
                 val plantName = editTextName.text.toString()
-                val plantTypeId = 1
+                val plantTypeId = 3
                 val user = FirebaseAuth.getInstance().currentUser?.uid
                 val plantImg = imgFolder.toString()
                 val myPost = Post(plantCode, plantName, plantTypeId, user, plantImg)
@@ -78,6 +82,9 @@ class SettingsFragment : Fragment() {
                 is ViewModelState.PlantSuccess -> {
                     editTextName.setText(state.plant.name)
                     editTextPlantCode.setText(state.plant.code)
+                    val myPlantImage = state.plant.image
+                    val myUri = Uri.parse(myPlantImage)
+                    imgFolder.setImageURI(myUri)
                 }
             }
         }

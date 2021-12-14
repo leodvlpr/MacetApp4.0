@@ -10,20 +10,18 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.util.Base64
 import android.widget.Toast
 import com.example.macetapp40.Login
 import com.example.macetapp40.ShareDataViewModel
 import com.example.macetapp40.ViewModelState
 import kotlinx.android.synthetic.main.fragment_home.imgPlant
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import android.graphics.BitmapFactory
-import android.util.Base64
 import com.example.macetapp40.R
 import kotlinx.android.synthetic.main.fragment_favourite.*
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
-
+import kotlinx.android.synthetic.main.fragment_home.tv_status
 
 private const val ARG_PARAM1 = "email"
 private const val ARG_PARAM2 = "plantName"
@@ -68,6 +66,17 @@ class HomeFragment() : Fragment() {
         userId?.let { shareDataViewModelViewModel.getPlantByUserId(it) }
     }
 
+    private fun decodeBase64(input: String?): Bitmap? {
+        val decodedString = Base64.decode(input , Base64.DEFAULT)
+        try {
+            return BitmapFactory.decodeByteArray(decodedString , 0 , decodedString.size)
+        } catch (e: Exception) {
+            println(e)
+            return null
+        }
+    }
+
+
     private fun observerResponse () {
         shareDataViewModelViewModel.getViewModelState.observe(viewLifecycleOwner) {
                 state ->
@@ -82,17 +91,24 @@ class HomeFragment() : Fragment() {
                     }
                     is ViewModelState.PlantSuccess -> {
                         tv_plantName.text = state.plant.name
-                        val encodeByte: ByteArray = Base64.decode(state.plant.image, Base64.DEFAULT)
-                        val inputStream: InputStream = ByteArrayInputStream(encodeByte)
-                        val bitmap = BitmapFactory.decodeStream(inputStream)
-                        imgPlant.setImageBitmap(bitmap)
+                        val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
+                        val img: Bitmap? = decodeBase64(cleanImage)
+                        imgPlant.setImageBitmap(img)
+
+                        if (state.plant.humidity == null || state.plant.humidity == 0) {
+                            tv_humidity.text = "--"
+                            Toast.makeText(context, "No assigned plant yet! Please register your plant code", Toast.LENGTH_SHORT).show()
+                        } else {
+                            tv_humidity.text = state.plant.humidity.toString()
+                        }
+
                         if (state.plant.watering == "si") {
-                            tv_status.text = "OK"
+                            tv_status.text = "Yes"
                         }
                         if (state.plant.watering == null) {
-                            tv_status.text = "null"
-                        } else {
                             tv_status.text = "--"
+                        } else {
+                            tv_status.text = "No"
                         }
                     }
                     else -> {

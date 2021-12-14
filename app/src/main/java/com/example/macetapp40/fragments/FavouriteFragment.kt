@@ -1,6 +1,8 @@
 package com.example.macetapp40.fragments
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import androidx.fragment.app.Fragment
@@ -15,6 +17,7 @@ import com.example.macetapp40.ViewModelState
 import kotlinx.android.synthetic.main.fragment_favourite.*
 import kotlinx.android.synthetic.main.fragment_favourite.imgPlant
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.io.ByteArrayInputStream
 import java.io.InputStream
@@ -54,6 +57,16 @@ class FavouriteFragment : Fragment() {
         userId?.let { shareDataViewModelViewModel.getPlantByUserId(it) }
     }
 
+    private fun decodeBase64(input: String?): Bitmap? {
+        val decodedString = Base64.decode(input , Base64.DEFAULT)
+        try {
+            return BitmapFactory.decodeByteArray(decodedString , 0 , decodedString.size)
+        } catch (e: Exception) {
+            println(e)
+            return null
+        }
+    }
+
     private fun observerResponse () {
         shareDataViewModelViewModel.getViewModelState.observe(viewLifecycleOwner) {
             state ->
@@ -68,21 +81,29 @@ class FavouriteFragment : Fragment() {
                 }
                 is ViewModelState.PlantSuccess -> {
                     tv_plantNameFav.text = state.plant.name
-                    val encodeByte: ByteArray = Base64.decode(state.plant.image, Base64.DEFAULT)
-                    val inputStream: InputStream = ByteArrayInputStream(encodeByte)
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
-                    imgPlant.setImageBitmap(bitmap)
-                    if (state.plant.humidity == 0) {
+                    val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
+                    val img: Bitmap? = decodeBase64(cleanImage)
+                    imgPlant.setImageBitmap(img)
+
+                    if (state.plant.date == null || state.plant.date == "") {
+                        tv_statusDate.text = "   --   "
+                    } else {
+                        tv_statusDate.text = " " + state.plant.date + " "
+                    }
+
+                    if (state.plant.humidity == null || state.plant.humidity == 0) {
                         tv_humidityFav.text = "--"
-                        tv_plantNameFav.text = "No plant yet!"
-                        Toast.makeText(context, "No assigned plant yet! Please register your product in our website. www.macetapp.com", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "No assigned plant yet! Please register your plant code", Toast.LENGTH_SHORT).show()
                     } else {
                         tv_humidityFav.text = state.plant.humidity.toString()
                     }
                     if (state.plant.watering == "si") {
-                        tv_statusFav.text = "OK"
-                    } else {
+                        tv_statusFav.text = "Yes"
+                    }
+                    if (state.plant.watering == null) {
                         tv_statusFav.text = "--"
+                    } else {
+                        tv_statusFav.text = "No"
                     }
                 }
                 else -> {}
