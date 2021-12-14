@@ -19,16 +19,15 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import android.graphics.BitmapFactory
 import android.util.Base64
 import com.example.macetapp40.R
-import kotlinx.android.synthetic.main.fragment_favourite.*
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
+import androidx.appcompat.app.AlertDialog
+import java.lang.Exception
 
 
 private const val ARG_PARAM1 = "email"
 private const val ARG_PARAM2 = "plantName"
 private const val ARG_PARAM3 = "plantSensor"
 private const val ARG_PARAM4 = "userId"
+
 
 class HomeFragment() : Fragment() {
 
@@ -68,6 +67,16 @@ class HomeFragment() : Fragment() {
         userId?.let { shareDataViewModelViewModel.getPlantByUserId(it) }
     }
 
+    private fun decodeBase64(input: String?): Bitmap? {
+        val decodedString = Base64.decode(input , Base64.DEFAULT)
+        try {
+            return BitmapFactory.decodeByteArray(decodedString , 0 , decodedString.size)
+        } catch (e: Exception) {
+            println(e)
+            return null
+        }
+    }
+
     private fun observerResponse () {
         shareDataViewModelViewModel.getViewModelState.observe(viewLifecycleOwner) {
                 state ->
@@ -82,18 +91,15 @@ class HomeFragment() : Fragment() {
                     }
                     is ViewModelState.PlantSuccess -> {
                         tv_plantName.text = state.plant.name
-                        val encodeByte: ByteArray = Base64.decode(state.plant.image, Base64.DEFAULT)
-                        val inputStream: InputStream = ByteArrayInputStream(encodeByte)
-                        val bitmap = BitmapFactory.decodeStream(inputStream)
-                        imgPlant.setImageBitmap(bitmap)
-                        if (state.plant.watering == "si") {
-                            tv_status.text = "OK"
-                        }
+
+                        val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
+                        val img: Bitmap? = decodeBase64(cleanImage)
+                        imgPlant.setImageBitmap(img)
+
                         if (state.plant.watering == null) {
-                            tv_status.text = "null"
+                            tv_status.text = "-"
                         } else {
-                            tv_status.text = "--"
-                        }
+                            tv_status.text = state.plant.watering                        }
                     }
                     else -> {
                         Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
