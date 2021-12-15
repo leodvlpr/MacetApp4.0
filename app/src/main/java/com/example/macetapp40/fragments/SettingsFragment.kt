@@ -10,6 +10,7 @@ import com.example.macetapp40.R
 import kotlinx.android.synthetic.main.fragment_settings.*
 import android.provider.MediaStore
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Base64
@@ -19,6 +20,7 @@ import com.example.macetapp40.ViewModelState
 import com.example.macetapp40.model.Post
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_favourite.*
+import okio.ByteString.Companion.decodeBase64
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.io.ByteArrayInputStream
 
@@ -84,12 +86,22 @@ class SettingsFragment : Fragment() {
                     editTextPlantCode.setText(state.plant.code)
                     val myPlantImage = state.plant.image
                     val myUri = Uri.parse(myPlantImage)
-                    imgFolder.setImageURI(myUri)
+                    val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
+                    val img: Bitmap? = decodeBase64(cleanImage)
+                    imgFolder.setImageBitmap(img)
                 }
             }
         }
     }
-
+    private fun decodeBase64(input: String?): Bitmap? {
+        val decodedString = Base64.decode(input , Base64.DEFAULT)
+        try {
+            return BitmapFactory.decodeByteArray(decodedString , 0 , decodedString.size)
+        } catch (e: Exception) {
+            println(e)
+            return null
+        }
+    }
     private fun openGallery() {
         val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         startActivityForResult(gallery, PICK_IMAGE)
