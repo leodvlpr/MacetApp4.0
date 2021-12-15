@@ -11,21 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imgFolder"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="230dp"
-            android:layout_marginTop="280dp"
-            android:contentDescription="TODO"
-            android:foreground="@android:drawable/ic_menu_gallery" />
+        <Button
+            android:id="@+id/btnPickImage"
+            android:layout_width="227dp"
+            android:layout_height="64dp"
+            android:layout_below="@+id/editTextPlantCode"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="121dp"
+            android:layout_marginBottom="369dp"
+            android:text="Pick Image" />
 
         <TextView
             android:id="@+id/tv_plantNameConf"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="170dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/tv_plantType"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-black"
             android:text="Name:"
             android:textColor="#323232"
@@ -33,10 +40,12 @@
 
         <TextView
             android:id="@+id/tv_plantType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="110dp"
+            android:layout_width="76dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="109dp"
             android:fontFamily="sans-serif-black"
             android:text="Type:"
             android:textColor="#323232"
@@ -45,23 +54,13 @@
         <TextView
             android:id="@+id/tv_plantCode"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="230dp"
+            android:layout_height="52dp"
+            android:layout_below="@+id/tv_plantNameConf"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-black"
             android:text="Plant code:"
-            android:textColor="#323232"
-            android:textSize="26sp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginBottom="128dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Select picture:"
             android:textColor="#323232"
             android:textSize="26sp" />
 
@@ -69,8 +68,12 @@
             android:id="@+id/editTextName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="160dp"
+            android:layout_below="@+id/spinner2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="61dp"
+            android:layout_toEndOf="@+id/tv_plantNameConf"
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
@@ -78,10 +81,13 @@
 
         <EditText
             android:id="@+id/editTextPlantCode"
-            android:layout_width="160dp"
+            android:layout_width="163dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="190dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="220dp"
+            android:layout_marginEnd="61dp"
+            android:layout_toEndOf="@+id/tv_plantCode"
             android:ems="10"
             android:inputType="textVisiblePassword"
             android:minHeight="48dp"
@@ -89,18 +95,39 @@
 
         <Button
             android:id="@+id/saveBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="280dp"
-            android:layout_marginTop="530dp"
+            android:layout_width="314dp"
+            android:layout_height="73dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="63dp"
             android:text="Save" />
 
         <Spinner
             android:id="@+id/spinner2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="227dp"
+            android:layout_height="41dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="120dp" />
+            android:layout_marginTop="103dp"
+            android:layout_marginEnd="61dp" />
+
+        <ImageView
+            android:id="@+id/imgPlantView"
+            android:layout_width="224dp"
+            android:layout_height="182dp"
+            android:layout_above="@+id/saveBtn"
+            android:layout_below="@+id/btnPickImage"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="-346dp"
+            android:layout_marginEnd="118dp"
+            android:layout_marginBottom="27dp"
+            tools:src="@tools:sample/avatars" />
 
     </RelativeLayout>
 
