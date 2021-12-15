@@ -90,6 +90,7 @@ class HomeFragment() : Fragment() {
                         }
                     }
                     is ViewModelState.PlantSuccess -> {
+                        emailTextView.text = email
                         tv_plantName.text = state.plant.name
                         val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
                         val img: Bitmap? = decodeBase64(cleanImage)
@@ -101,7 +102,13 @@ class HomeFragment() : Fragment() {
                         } else {
                             tv_humidity.text = state.plant.humidity.toString()
                         }
-
+                        if (state.plant.date == null || state.plant.date == "") {
+                            tv_lastwatering.text = "   --   "
+                        } else {
+                            val stringDate = state.plant.date
+                            val splitDate = stringDate.split("T")
+                            tv_lastwatering.text = " " + splitDate[0] + " "
+                        }
                         if (state.plant.watering == "si") {
                             tv_status.text = "Yes"
                         }
