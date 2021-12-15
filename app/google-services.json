@@ -15,11 +15,43 @@
       },
       "oauth_client": [
         {
-          "client_id": "1017624374907-rk53li1bms5ggha9vi84tr8o4ep29dot.apps.googleusercontent.com",
+          "client_id": "1017624374907-2e19urhaub1879ouv49bsjcg4sni0san.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.macetapp40",
             "certificate_hash": "31c78f18d067e069ccdb42153b61fc3f243251e6"
+          }
+        },
+        {
+          "client_id": "1017624374907-hi31ko415ipfm9n5899je30llt057sbj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.macetapp40",
+            "certificate_hash": "bebc87aa0f83a958710bf2c7b1ab6e38acc43419"
+          }
+        },
+        {
+          "client_id": "1017624374907-lp2ig0hl7jq4rl8hnecovt0m63t6kvvk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.macetapp40",
+            "certificate_hash": "2e2f270614d2f03bde70d3d22a75fd2a5f20d0fa"
+          }
+        },
+        {
+          "client_id": "1017624374907-qgrpfl8bvgr928v30s6sfs3pgadbi2sl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.macetapp40",
+            "certificate_hash": "ab7c918587f6c97f59df906cdaed4018979f357f"
+          }
+        },
+        {
+          "client_id": "1017624374907-vk5n0d39bcjpg7u5r6mesm68aiv53t5v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.macetapp40",
+            "certificate_hash": "830a5e25dd052c259c4e173c9fedca9610e76c08"
           }
         },
         {
