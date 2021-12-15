@@ -3,6 +3,7 @@ package com.example.macetapp40.fragments
 import android.app.Activity.RESULT_OK
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +16,13 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Base64
 import android.widget.*
+import androidx.core.graphics.drawable.toBitmap
 import com.example.macetapp40.ShareDataViewModel
 import com.example.macetapp40.ViewModelState
 import com.example.macetapp40.model.Post
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_favourite.*
-import okio.ByteString.Companion.decodeBase64
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 
 private const val ARG_PARAM1 = "plantName"
 private const val ARG_PARAM3 = "userId"
@@ -58,7 +58,8 @@ class SettingsFragment : Fragment() {
                 val plantName = editTextName.text.toString()
                 val plantTypeId = 2
                 val user = FirebaseAuth.getInstance().currentUser?.uid
-                val plantImg = imgFolder.toString()
+                val plantImgBit = imgFolder.drawable.toBitmap()
+                val plantImg = encodeImage(plantImgBit)
                 val myPost = Post(plantCode, plantName, plantTypeId, user, plantImg)
                 shareDataViewModelViewModel.setModifyPlant(myPost)
             } else {
@@ -66,7 +67,8 @@ class SettingsFragment : Fragment() {
                 val plantName = editTextName.text.toString()
                 val plantTypeId = 3
                 val user = FirebaseAuth.getInstance().currentUser?.uid
-                val plantImg = imgFolder.toString()
+                val plantImgBit = imgFolder.drawable.toBitmap()
+                val plantImg = encodeImage(plantImgBit)
                 val myPost = Post(plantCode, plantName, plantTypeId, user, plantImg)
                 shareDataViewModelViewModel.setNewPlant(myPost)
             }
@@ -76,7 +78,12 @@ class SettingsFragment : Fragment() {
         userId?.let { shareDataViewModelViewModel.getPlantByUserId(it) }
 
     }
-
+    private fun encodeImage(bm: Bitmap): String? {
+        val baos = ByteArrayOutputStream()
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val b = baos.toByteArray()
+        return Base64.encodeToString(b, Base64.DEFAULT)
+    }
     private fun observerResponse() {
         shareDataViewModelViewModel.getViewModelState.observe(viewLifecycleOwner) {
             state ->
